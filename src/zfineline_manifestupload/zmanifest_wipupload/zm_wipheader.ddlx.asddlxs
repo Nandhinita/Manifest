@@ -1,0 +1,88 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'ManifestUpload', 
+    typeNamePlural: 'ManifestUploads'
+  }
+}
+annotate entity ZC_WIPHEADER
+    with 
+{
+    @UI.facet: 
+  [ 
+      {
+        id: 'ManifestUpload', 
+        type: #IDENTIFICATION_REFERENCE, 
+        label: 'ManifestUploads', 
+        position: 10 
+      },
+      {
+        id:'File',
+        purpose:#STANDARD,
+        type: #LINEITEM_REFERENCE,
+        label: 'File',
+        position: 20,
+        targetElement: '_att'
+      }  
+  ]
+  
+  @UI: {
+  lineItem:       
+  [ 
+//    { type: #FOR_ACTION, position: 10, dataAction: 'check_consistency', label: 'Check Consistency' },
+    { type: #FOR_ACTION, position: 20, dataAction: 'import_file', label: 'Import Files' }
+//    { type: #FOR_ACTION, position: 30, dataAction: 'upload_orders', label: 'Upload Orders' },
+//    { type: #FOR_ACTION, position: 40, dataAction: 'refresh', label: 'Refresh' }
+  ],
+  identification: 
+  [ 
+//    { type: #FOR_ACTION, position: 10,  dataAction: 'check_consistency', label: 'Check Consistency' },
+    { type: #FOR_ACTION, position: 20, dataAction: 'import_file', label: 'Import Files' }
+//    { type: #FOR_ACTION, position: 30, dataAction: 'upload_orders', label: 'Upload Orders' },
+//    { type: #FOR_ACTION, position: 40, dataAction: 'refresh', label: 'Refresh' }
+  ],
+    textArrangement: #TEXT_ONLY
+  } 
+  
+  @UI.hidden: true
+  ZUuid;
+  
+   @UI: {
+  lineItem: [ { position:10 }],
+  lineItem: [{label: 'Manifest ID'}],
+  identification: [ { position: 10 } ],
+  selectionField: [ { position: 10 } ]
+  }
+   @EndUserText.label: 'Manifest ID'
+   ZManifestId;
+   
+     @UI: {
+  lineItem: [ { position:20 }],
+  lineItem: [{label: 'Type'}],
+  identification: [ { position: 20 } ],
+  selectionField: [ { position: 20 } ]
+  }
+    @EndUserText.label: 'Type'
+   ZDocType;
+   
+   @UI: {
+  lineItem: [ { position: 30 }],
+  lineItem: [{label: 'Status'}],
+  identification: [ { position: 30 } ],
+  selectionField: [ { position: 30 } ]
+  }
+   @EndUserText.label: 'Status'
+   ZStatus;
+  
+ @UI: {
+  lineItem: [ { position: 40 }],
+  lineItem: [{label: 'Status'}],
+  identification: [ { position: 40 } ]
+  }
+
+  ZCreatedAt;
+  
+  @UI.hidden: true
+  ZLastChangedAt;
+    
+}

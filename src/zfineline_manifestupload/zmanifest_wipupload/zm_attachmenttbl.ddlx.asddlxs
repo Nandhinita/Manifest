@@ -1,0 +1,70 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'File', 
+    typeNamePlural: 'Files'
+  }
+}
+annotate entity ZC_ATTACHMENTTBL
+    with 
+{
+    @UI.facet: [ 
+  {
+      id:'File',
+      purpose:#STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'File',
+      position: 10
+  },
+  {
+    id:'Order',
+    purpose:#STANDARD,
+    type: #LINEITEM_REFERENCE,
+    label: 'Order Details',
+    position: 20,
+    targetElement: '_orderdetails'
+  } 
+  ]
+  
+  @UI.hidden: true
+  ZAttUuid;
+
+  @UI.hidden: true
+  ZUuid;
+
+  @UI:
+  {
+      lineItem: [ { position: 10, label: 'File ID' } ],
+      identification: [ { position: 10, label: 'File ID' } ],
+      selectionField: [ { position: 10 } ]
+  }
+  ZAttId;
+
+  @UI:
+  {
+      lineItem: [ { position: 20, label: 'Consistency' } ],
+      identification: [ { position: 20, label: 'Consistency' } ]
+  }
+  Zconsistencystatus;
+
+  @UI:
+  {
+      lineItem: [ { position: 30, label: 'Status' } ],
+      identification: [ { position: 30, label: 'Status' } ]
+  }
+  Zstatus;
+
+  @UI:
+  {
+      lineItem: [ { position: 40, label: 'File' } ],
+      identification: [ { position: 40, label: 'File' } ]
+  }
+  ZFile;
+
+  @UI.hidden: true
+  ZFilename;
+
+  @UI.hidden: true
+  ZMimetype;
+    
+}

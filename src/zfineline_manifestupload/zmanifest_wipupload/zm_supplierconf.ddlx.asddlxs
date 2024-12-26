@@ -1,0 +1,79 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'SupplierConfirmation',
+    typeNamePlural: 'SupplierConfirmations'
+  }
+}
+annotate entity ZC_SUPPLIERCONF
+    with 
+{
+    @UI.facet:
+  [
+      {
+        id: 'SupplierConfirmation',
+        type: #IDENTIFICATION_REFERENCE,
+        label: 'Supplier Confirmation',
+        position: 10
+      }
+     
+  ]
+
+  @UI.hidden: true
+  SupplierconfUuid;
+
+
+
+   @UI: {
+  lineItem: [ { position:10 }],
+  lineItem: [{label: 'PO ID'}],
+  identification: [ { position: 10 } ],
+  selectionField: [ { position: 10 } ]
+  }
+  @EndUserText.label: 'Purchase Order ID'
+   ZPoid;
+  
+  
+  
+   @UI: {
+  lineItem: [ { position:20 }],
+  lineItem: [{label: 'External Reference'}],
+  identification: [ { position: 20 } ],
+  selectionField: [ { position: 20 } ]
+  }
+     @EndUserText.label: 'External Reference'
+   ZExternalref;
+
+
+   @UI: {
+  lineItem: [ { position: 30 }],
+  lineItem: [{label: 'PO Item ID'}],
+  identification: [ { position: 30 } ],
+  selectionField: [ { position: 30 } ]
+  }
+    @EndUserText.label: 'PO Item ID'
+   ZPoitmId;
+
+  @UI: {
+  lineItem: [ { position: 40 }],
+  lineItem: [{label: 'Delivery Date'}],
+  identification: [ { position: 40 } ],
+  selectionField: [ { position: 40 } ]
+  }
+  @EndUserText.label: 'Delivery Date'
+  ZDeliverydate;
+  
+    @UI: {
+  lineItem: [ { position: 50 }],
+  lineItem: [{label: 'Confirmed Quantity'}],
+  identification: [ { position: 50 } ],
+  selectionField: [ { position: 50 } ]
+  }
+  @EndUserText.label: 'Confirmed Quantity'
+  ZConfirmedqty;
+  
+
+  @UI.hidden: true
+  ZAttUuid;
+    
+}

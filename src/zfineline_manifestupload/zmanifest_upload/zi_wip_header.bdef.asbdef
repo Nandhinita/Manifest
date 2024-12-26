@@ -1,0 +1,220 @@
+
+managed implementation in class zbp_i_wip_header unique;
+strict ( 2 );
+
+with draft;
+
+define behavior for ZI_WIP_HEADER
+persistent table zwip_header
+draft table zwip_header_d
+etag master ZLastChangedAt
+lock master total etag ZLocalLastChangedAt
+authorization master( global )
+with additional save
+{
+  field ( readonly )
+   ZUUID,
+ZManifestId,
+   ZCreatedAt,
+   ZCreatedBy,
+   ZLocalLastChangedAt,
+   ZLastChangedAt,
+   ZLastChangedBy;
+
+  field ( numbering : managed )
+   ZUUID;
+
+  create;
+  update;
+  delete;
+
+  action check_consistency;
+  action import_file;
+  action upload_orders;
+  action refresh;
+
+determination Generate_Header_ID on save { create; }
+
+  side effects {
+    action check_consistency affects entity _att, $self;
+    action import_file affects entity _att, $self;
+    action upload_orders affects entity _att, $self;
+    action refresh affects entity _att, $self;
+  }
+
+
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+
+  mapping for zwip_header
+  {
+     ZDocType = z_doc_type;
+   ZManifestId = z_manifest_id;
+   ZStatus = z_status;
+
+   ZUuid = z_uuid;
+
+    ZCreatedBy = z_created_by;
+    ZCreatedAt = z_created_at;
+    ZLastChangedBy = z_last_changed_by;
+    ZLastChangedAt = z_last_changed_at;
+    ZLocalLastChangedAt = z_local_last_changed_at;
+  }
+
+  association _att { create; with draft; }
+  association _itm { create; with draft; }
+ association _reslog { create; with draft; }
+}
+
+define behavior for ZI_ATTACHMENT_TBL
+persistent table zattachment_tbl
+draft table zattach_tbl_d
+lock dependent by _hdr
+authorization dependent by _hdr
+etag master ZLastChangedAt
+{
+    field ( readonly )
+    ZUuid,
+    ZAttId,
+    ZAttUuid;
+
+    field ( numbering : managed )
+    ZAttUuid;
+
+determination Generate_Itm_ID on save { create; }
+
+    update;
+    delete;
+
+    association _hdr { with draft; }
+
+    mapping for zattachment_tbl
+    {
+        ZAttUuid                =     z_att_uuid;
+        ZUuid                   =     z_uuid;
+        ZAttId                  =     z_att_id;
+        ZFile                   =     z_file;
+        ZFilename               =     z_filename;
+        ZMimetype               =     z_mimetype;
+        Zconsistencystatus      =     z_consistency_status;
+        Zstatus                 =     z_status;
+        ZCreatedBy              =     z_created_by;
+        ZCreatedAt              =     z_created_at;
+        ZLastChangedBy          =     z_last_changed_by;
+        ZLastChangedAt          =     z_last_changed_at;
+        ZLocalLastChangedAt     =     z_local_last_changed_at;
+    }
+ }
+
+define behavior for ZI_SUPPLIER_CONF
+persistent table zsupplier_conf
+draft table zsupplier_conf_d
+lock dependent by _hdr
+authorization dependent by _hdr
+etag master ZLastChangedAt
+{
+    field ( readonly )
+     SupplierconfUuid,
+     ZItmID,
+     ZUuid,
+  ZCreatedAt,
+  ZCreatedBy,
+  ZLocalLastChangedAt,
+  ZLastChangedAt,
+  ZLastChangedBy;
+
+    field ( numbering : managed )
+   SupplierconfUuid;
+
+    update;
+    delete;
+determination Generate_Item_ID on save { create; }
+    association _hdr { with draft; }
+
+   mapping for zsupplier_conf
+    {
+      SupplierconfUuid = supplierconf_uuid;
+      ZConfirmedqty = z_confirmedqty;
+      ZConfirmedqtyunit = z_confirmedqtyunit;
+
+      ZExternalref = z_externalref;
+      ZPoid = z_poid;
+      ZPoitmId = z_poitm_id;
+      ZUuid               = z_uuid;
+      ZItmID = z_itmid;
+ZPOConfdate = z_poconfdate;
+Z_Status = z_status_c;
+ZStatus = z_status;
+ZComment = z_comment;
+ZDelayreason = z_delayreason;
+    ZWipstatus = z_wipstatus;
+    ZWippreviousstatus = z_wippreviousstatus;
+    ZVendorPn = z_vendor_pn;
+    ZPlant = z_plant;
+    ZActivity1Desc = z_activity1_desc;
+ZAct1remainddate = z_activity1_remainddate;
+ZAct1reqdate = z_activity1_reqdate;
+    ZActivity4Desc = z_activity4_desc;
+
+ZAct4remainddate = z_activity4_remainddate;
+ZAct4reqdate = z_activity4_reqdate;
+ZLastcqenddate = z_lastcq_enddate;
+ZLastcqstartdate = z_lastcq_startdate;
+ZLasteqenddate = z_lasteq_enddate;
+ZLasteqstartdate = z_lasteq_startdate;
+    ZNoofCrmEq = z_noof_crm_eq;
+    ZMultipleitmmatch = z_multipleitmmatch;
+    ZXforReviewed = z_xfor_reviewed;
+    ZLogisticRemainddate = z_logistic_remainddate;
+    ZLogisticRemaindnote = z_logistic_remaindnote;
+    ZEqEngineername = z_eq_engineername;
+    ZCqOwnername = z_cq_ownername;
+    ZMaterial = z_material;
+    ZFirstagent = z_firstagent;
+    ZFirstcustomer = z_firstcustomer;
+ZAttuuid = z_attuuid;
+      ZCreatedBy             = z_created_by;
+      ZCreatedAt             = z_created_at;
+      ZLastChangedBy         = z_last_changed_by;
+      ZLastChangedAt         = z_last_changed_at;
+      ZLocalLastChangedAt    = z_local_last_changed_at;
+    }
+ }
+
+
+define behavior for ZI_RESPONSELOG
+persistent table zresponselog
+draft table zresponselog_d
+lock dependent by _hdr
+authorization dependent by _hdr
+etag master ZLastChangedAt
+{
+    field ( readonly )
+    ZLogUuid,ZUuid;
+
+    field ( numbering : managed )
+   ZLogUuid;
+
+    update;
+    delete;
+    association _hdr { with draft; }
+
+   mapping for zresponselog
+    {
+      ZLogCreatedon = z_log_createdon;
+      ZLogId = z_log_id;
+      ZLogText = z_log_text;
+      ZLogUuid = z_log_uuid;
+      ZUuid = zuuid;
+      ZCreatedBy             = z_created_by;
+      ZCreatedAt             = z_created_at;
+      ZLastChangedBy         = z_last_changed_by;
+      ZLastChangedAt         = z_last_changed_at;
+      ZLocalLastChangedAt    = z_local_last_changed_at;
+    }
+ }

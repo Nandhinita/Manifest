@@ -1,0 +1,50 @@
+managed implementation in class zbp_i_supplierconf unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_SUPPLIERCONF
+persistent table zsupplierconf
+draft table zsupplierconf_d
+etag master ZLastChangedAt
+lock master total etag ZLocalLastChangedAt
+authorization master ( global )
+{
+  field ( readonly )
+  SupplierconfUuid,
+  ZCreatedAt,
+  ZCreatedBy,
+  ZLocalLastChangedAt,
+  ZLastChangedAt,
+  ZLastChangedBy;
+
+  field ( numbering : managed )
+  SupplierconfUuid;
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zsupplierconf
+    {
+      SupplierconfUuid = supplierconf_uuid;
+      ZConfirmedqty = z_confirmedqty;
+      ZConfirmedqtyunit = z_confirmedqtyunit;
+      ZDeliverydate = z_deliverydate;
+      ZExternalref = z_externalref;
+      ZPoid = z_poid;
+      ZPoitmId = z_poitm_id;
+      ZAttUuid               = z_att_uuid;
+      ZCreatedBy             = z_created_by;
+      ZCreatedAt             = z_created_at;
+      ZLastChangedBy         = z_last_changed_by;
+      ZLastChangedAt         = z_last_changed_at;
+      ZLocalLastChangedAt    = z_local_last_changed_at;
+    }
+
+  }

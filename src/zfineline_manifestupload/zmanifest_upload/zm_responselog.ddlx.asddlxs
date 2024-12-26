@@ -1,0 +1,32 @@
+@Metadata.layer: #CORE
+annotate entity ZC_RESPONSELOG
+    with 
+{
+ @UI.facet: 
+[ 
+    { 
+        id:'Response', 
+        purpose:#STANDARD, 
+        type: #IDENTIFICATION_REFERENCE, 
+        label: 'Response', 
+        position: 10 
+     }
+]
+     @UI.hidden: true
+  ZLogUuid;
+
+
+
+   @UI: {
+  lineItem: [ { position:10 }],
+  lineItem: [{label: 'PO Line ID'}],
+  identification: [ { position: 10 } ],
+  selectionField: [ { position: 10 } ]
+  }
+  @EndUserText.label: 'Log ID'
+   ZLogId;
+  
+  
+  
+ 
+}

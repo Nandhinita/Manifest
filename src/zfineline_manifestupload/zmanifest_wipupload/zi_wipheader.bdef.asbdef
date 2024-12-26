@@ -1,0 +1,105 @@
+managed implementation in class zbp_i_wipheader unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_WIPHEADER
+persistent table zwipheader_tbl
+draft table zwipheader_tbl_d
+etag master ZLastChangedAt
+lock master total etag ZLocalLastChangedAt
+authorization master( global )
+with additional save
+{
+  field ( readonly )
+   ZUUID,
+
+   ZCreatedAt,
+   ZCreatedBy,
+   ZLocalLastChangedAt,
+   ZLastChangedAt,
+   ZLastChangedBy;
+
+  field ( numbering : managed )
+   ZUUID;
+
+
+
+  action check_consistency;
+  action import_file;
+  action upload_orders;
+  action refresh;
+
+  side effects {
+    action check_consistency affects entity _att, $self;
+    action import_file affects entity _att, $self;
+    action upload_orders affects entity _att, $self;
+    action refresh affects entity _att, $self;
+  }
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zwipheader_tbl
+  {
+   ZDocType = z_doc_type;
+   ZManifestId = z_manifest_id;
+   ZStatus = z_status;
+   ZUuid = z_uuid;
+    ZCreatedBy = z_created_by;
+    ZCreatedAt = z_created_at;
+    ZLastChangedBy = z_last_changed_by;
+    ZLastChangedAt = z_last_changed_at;
+    ZLocalLastChangedAt = z_local_last_changed_at;
+  }
+
+  association _att { create; with draft; }
+
+}
+
+define behavior for ZI_ATTACHMENTTBL
+persistent table zattachmenttable
+draft table zattachtbl_d
+lock dependent by _hdr
+authorization dependent by _hdr
+etag master ZLastChangedAt
+{
+    field ( readonly )
+    ZAttUuid,
+    ZAttId,
+    ZUuid;
+
+    field ( numbering : managed )
+    ZAttUuid;
+
+    determination Generate_File_ID on save { create; }
+
+    update;
+    delete;
+
+    association _hdr { with draft; }
+
+    mapping for zattachmenttable
+    {
+        ZAttUuid                =     z_att_uuid;
+        ZUuid                   =     z_uuid;
+        ZAttId                  =     z_att_id;
+        ZFile                   =     z_file;
+        ZFilename               =     z_filename;
+        ZMimetype               =     z_mimetype;
+        Zconsistencystatus      =     z_consistency_status;
+        Zstatus                 =     z_status;
+        ZCreatedBy              =     z_created_by;
+        ZCreatedAt              =     z_created_at;
+        ZLastChangedBy          =     z_last_changed_by;
+        ZLastChangedAt          =     z_last_changed_at;
+        ZLocalLastChangedAt     =     z_local_last_changed_at;
+    }
+
+ }

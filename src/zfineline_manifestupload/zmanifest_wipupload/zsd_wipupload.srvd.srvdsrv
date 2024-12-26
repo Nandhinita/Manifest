@@ -1,0 +1,8 @@
+@EndUserText.label: 'service definition - WIP Upload'
+define service ZSD_WIPUPLOAD {
+
+
+  expose ZC_WIPHEADER;
+  expose ZC_ATTACHMENTTBL;
+  expose ZC_SUPPLIERCONF;
+}

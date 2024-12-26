@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service Definition - WIP Header'
+define service ZSD_WIPHEADER {
+  expose ZC_WIP_HEADER;
+  expose ZC_ATTACHMENT_TBL;
+  expose ZC_SUPPLIER_CONF;
+  expose ZC_RESPONSELOG;
+}

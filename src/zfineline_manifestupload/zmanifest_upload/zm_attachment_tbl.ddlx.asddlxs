@@ -1,0 +1,77 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'File', 
+    typeNamePlural: 'Files'
+  }
+}
+annotate entity ZC_ATTACHMENT_TBL
+    with 
+{
+  @UI.facet:
+  [
+      {
+          id:'Att',
+          purpose:#STANDARD,
+          type: #IDENTIFICATION_REFERENCE,
+          label: 'Attachment',
+          position: 10
+       }
+  ]
+  
+  @UI.hidden: true
+  ZAttUuid;
+
+  @UI.hidden: true
+  ZUuid;
+
+  @UI:
+  {
+      lineItem: [ { position: 10, label: 'File ID' } ],
+      identification: [ { position: 10, label: 'File ID' } ],
+      selectionField: [ { position: 10 } ]
+  }
+  ZAttId;
+
+//  @UI:
+//  {
+//      lineItem: [ { position: 20, label: 'Consistency' } ],
+//      identification: [ { position: 20, label: 'Consistency' } ]
+//  }
+//  Zconsistencystatus;
+//
+//  @UI:
+//  {
+//      lineItem: [ { position: 30, label: 'Status' } ],
+//      identification: [ { position: 30, label: 'Status' } ]
+//  }
+//  Zstatus;
+
+  @UI:
+  {
+      lineItem: [ { position: 20, label: 'File' } ],
+      identification: [ { position: 20, label: 'File' } ]
+  }
+  ZFile;
+
+  @UI.hidden: true
+  ZFilename;
+
+  
+  @UI.hidden: true
+  ZMimetype;
+
+  @UI:
+  {
+      lineItem: [ { position: 30, label: 'Created At' } ],
+      identification: [ { position: 30, label: 'Created At' } ]
+  }
+  ZCreatedAt;
+  
+    @UI:
+  {
+      lineItem: [ { position: 40, label: 'Changed At' } ],
+      identification: [ { position: 40, label: 'Changed At' } ]
+  }
+  ZLastChangedAt;
+}

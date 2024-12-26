@@ -1,0 +1,31 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_WIPHEADER //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use action check_consistency;
+  use action import_file;
+  use action upload_orders;
+  use action refresh;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _att { create; with draft; }
+}
+
+define behavior for ZC_ATTACHMENTTBL //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _hdr { with draft; }
+}

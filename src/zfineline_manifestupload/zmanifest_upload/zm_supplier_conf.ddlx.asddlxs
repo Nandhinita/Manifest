@@ -1,0 +1,326 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'SupplierConfirmation',
+    typeNamePlural: 'SupplierConfirmations'
+  }
+}
+annotate entity ZC_SUPPLIER_CONF
+    with 
+{
+    @UI.facet: 
+[ 
+    { 
+        id:'Itm', 
+        purpose:#STANDARD, 
+        type: #IDENTIFICATION_REFERENCE, 
+        label: 'Details', 
+        position: 10 
+     }
+]
+     @UI.hidden: true
+  SupplierconfUuid;
+
+
+
+   @UI: {
+  lineItem: [ { position:10 }],
+  lineItem: [{label: 'PO Line ID'}],
+  identification: [ { position: 10 } ],
+  selectionField: [ { position: 10 } ]
+  }
+  @EndUserText.label: 'PO Line ID'
+   ZPoitmId;
+  
+  
+  
+   @UI: {
+  lineItem: [ { position:20 }],
+  lineItem: [{label: 'PO Number'}],
+  identification: [ { position: 20 } ],
+  selectionField: [ { position: 20 } ]
+  }
+     @EndUserText.label: 'PO Number'
+   ZPoid;
+
+
+   @UI: {
+  lineItem: [ { position: 30 }],
+  lineItem: [{label: 'Deliver remainder'}],
+  identification: [ { position: 30 } ],
+  selectionField: [ { position: 30 } ]
+  }
+    @EndUserText.label: 'Deliver remainder'
+   ZConfirmedqty;
+
+  @UI: {
+  lineItem: [ { position: 40 }],
+  lineItem: [{label: 'Purchase Confirmed Delivery Date'}],
+  identification: [ { position: 40 } ],
+  selectionField: [ { position: 40 } ]
+  }
+  @EndUserText.label: 'Purchase Confirmed Delivery Date'
+  ZPOConfdate;
+  
+    @UI: {
+  lineItem: [ { position: 50 }],
+  lineItem: [{label: 'Delay Reason'}],
+  identification: [ { position: 50 } ],
+  selectionField: [ { position: 50 } ]
+  }
+  @EndUserText.label: 'Delay Reason'
+  ZDelayreason;
+  
+     @UI: {
+  lineItem: [ { position: 60 }],
+  lineItem: [{label: 'Wip Status'}],
+  identification: [ { position: 60 } ],
+  selectionField: [ { position: 60 } ]
+  }
+  @EndUserText.label: 'Wip Status'
+  ZWipstatus;
+  
+  
+     @UI: {
+  lineItem: [ { position: 70 }],
+  lineItem: [{label: 'Wip Previos Status'}],
+  identification: [ { position: 70 } ],
+  selectionField: [ { position: 70 } ]
+  }
+  @EndUserText.label: 'Wip Previos Status'
+  ZWippreviousstatus;
+  
+     @UI: {
+  lineItem: [ { position: 80 }],
+  lineItem: [{label: 'Vendor P.N'}],
+  identification: [ { position: 80 } ],
+  selectionField: [ { position: 80 } ]
+  }
+  @EndUserText.label: 'Vendor P.N'
+  ZVendorPn;
+  
+     @UI: {
+  lineItem: [ { position: 90 }],
+  lineItem: [{label: 'Plant'}],
+  identification: [ { position: 90 } ],
+  selectionField: [ { position: 90 } ]
+  }
+  @EndUserText.label: 'Plant'
+  ZPlant;
+  
+     @UI: {
+  lineItem: [ { position: 100 }],
+  lineItem: [{label: 'Activity 1 Description'}],
+  identification: [ { position: 100 } ],
+  selectionField: [ { position: 100 } ]
+  }
+  @EndUserText.label: 'Activity 1 Description'
+  ZActivity1Desc;
+  
+     @UI: {
+  lineItem: [ { position: 110 }],
+  lineItem: [{label: 'Activity 1 Required Date'}],
+  identification: [ { position: 110 } ],
+  selectionField: [ { position: 110 } ]
+  }
+  @EndUserText.label: 'Activity 1 Required Date'
+  ZAct1reqdate;
+  
+     @UI: {
+  lineItem: [ { position: 120 }],
+  lineItem: [{label: 'Activity 1 Reminder Date'}],
+  identification: [ { position: 120 } ],
+  selectionField: [ { position: 120 } ]
+  }
+  @EndUserText.label: 'Activity 1 Reminder Date'
+  ZAct1remainddate;
+  
+     @UI: {
+  lineItem: [ { position: 130 }],
+  lineItem: [{label: 'Activity 4 Description'}],
+  identification: [ { position: 130 } ],
+  selectionField: [ { position: 130 } ]
+  }
+  @EndUserText.label: 'Activity 4 Description'
+  ZActivity4Desc;
+  
+     @UI: {
+  lineItem: [ { position: 140 }],
+  lineItem: [{label: 'Activity 4 Required Date'}],
+  identification: [ { position: 140 } ],
+  selectionField: [ { position: 140 } ]
+  }
+  @EndUserText.label: 'Activity 4 Required Date'
+  ZAct4reqdate;
+  
+       @UI: {
+  lineItem: [ { position: 150 }],
+  lineItem: [{label: 'Activity 4 Reminder Date'}],
+  identification: [ { position: 150 } ],
+  selectionField: [ { position: 150 } ]
+  }
+  @EndUserText.label: 'Activity 4 Reminder Date'
+  ZAct4remainddate;
+  
+       @UI: {
+  lineItem: [ { position: 160 }],
+  lineItem: [{label: 'Last EQ Start Date'}],
+  identification: [ { position: 160 } ],
+  selectionField: [ { position: 160 } ]
+  }
+  @EndUserText.label: 'Last EQ Start Date'
+  ZLasteqstartdate;
+  
+       @UI: {
+  lineItem: [ { position: 170 }],
+  lineItem: [{label: 'Last EQ End Date'}],
+  identification: [ { position: 170 } ],
+  selectionField: [ { position: 170 } ]
+  }
+  @EndUserText.label: 'Last EQ End Date'
+  ZLasteqenddate;
+  
+       @UI: {
+  lineItem: [ { position: 180 }],
+  lineItem: [{label: 'Last CQ Start Date'}],
+  identification: [ { position: 180 } ],
+  selectionField: [ { position: 180 } ]
+  }
+  @EndUserText.label: 'Last CQ Start Date'
+  ZLastcqstartdate;
+  
+       @UI: {
+  lineItem: [ { position: 190 }],
+  lineItem: [{label: 'Last Cq End Date'}],
+  identification: [ { position: 190 } ],
+  selectionField: [ { position: 190 } ]
+  }
+  @EndUserText.label: 'Last Cq End Date'
+  ZLastcqenddate;
+  
+       @UI: {
+  lineItem: [ { position: 200 }],
+  lineItem: [{label: 'Number Of CRM EQ'}],
+  identification: [ { position: 200 } ],
+  selectionField: [ { position: 200 } ]
+  }
+  @EndUserText.label: 'Number Of CRM EQ'
+  ZNoofCrmEq;
+  
+       @UI: {
+  lineItem: [ { position: 210 }],
+  lineItem: [{label: 'Multiple item match'}],
+  identification: [ { position: 210 } ],
+  selectionField: [ { position: 210 } ]
+  }
+  @EndUserText.label: 'Multiple item match'
+  ZMultipleitmmatch;
+  
+       @UI: {
+  lineItem: [ { position: 220 }],
+  lineItem: [{label: 'X - For Reviewd'}],
+  identification: [ { position: 220 } ],
+  selectionField: [ { position: 220 } ]
+  }
+  @EndUserText.label: 'X - For Reviewd'
+  ZXforReviewed;
+  
+         @UI: {
+  lineItem: [ { position: 230 }],
+  lineItem: [{label: 'Logistic Reminder Date'}],
+  identification: [ { position: 230 } ],
+  selectionField: [ { position: 230 } ]
+  }
+  @EndUserText.label: 'Logistic Reminder Date'
+  ZLogisticRemainddate;
+  
+         @UI: {
+  lineItem: [ { position: 240 }],
+  lineItem: [{label: 'Logistic Reminder Note'}],
+  identification: [ { position: 240 } ],
+  selectionField: [ { position: 240 } ]
+  }
+  @EndUserText.label: 'Logistic Reminder Note'
+  ZLogisticRemaindnote;
+  
+         @UI: {
+  lineItem: [ { position: 250 }],
+  lineItem: [{label: 'Eq Engineer Name'}],
+  identification: [ { position: 250 } ],
+  selectionField: [ { position: 250 } ]
+  }
+  @EndUserText.label: 'Eq Engineer Name'
+  ZEqEngineername;
+  
+         @UI: {
+  lineItem: [ { position: 260 }],
+  lineItem: [{label: 'CQ Owner Name'}],
+  identification: [ { position: 260 } ],
+  selectionField: [ { position: 260 } ]
+  }
+  @EndUserText.label: 'CQ Owner Name'
+  ZCqOwnername;
+  
+         @UI: {
+  lineItem: [ { position: 270 }],
+  lineItem: [{label: 'Material'}],
+  identification: [ { position: 270 } ],
+  selectionField: [ { position: 270 } ]
+  }
+  @EndUserText.label: 'Material'
+  ZMaterial;
+  
+           @UI: {
+  lineItem: [ { position: 280 }],
+  lineItem: [{label: 'First Agent'}],
+  identification: [ { position: 280 } ],
+  selectionField: [ { position: 280 } ]
+  }
+  @EndUserText.label: 'First Agent'
+  ZFirstagent;
+  
+           @UI: {
+  lineItem: [ { position: 290 }],
+  lineItem: [{label: 'First Customer'}],
+  identification: [ { position: 290 } ],
+  selectionField: [ { position: 290 } ]
+  }
+  @EndUserText.label: 'First Customer'
+  ZFirstcustomer;
+
+
+           @UI: {
+  lineItem: [ { position: 300 }],
+  lineItem: [{label: 'Status'}],
+  identification: [ { position: 300 } ],
+  selectionField: [ { position: 300 } ],
+ connectedFields: [{groupLabel: 'Status'}] 
+  }
+  @EndUserText.label: 'Status'
+
+  ZStatus;
+  
+  
+           @UI: {
+  lineItem: [ { position: 310 }],
+  lineItem: [{label: 'Comments'}],
+  identification: [ { position: 310 } ],
+  selectionField: [ { position: 310 } ]
+  }
+  @EndUserText.label: 'Comments'
+  ZComment;
+  
+
+  
+       @UI: {
+  lineItem: [ { position: 320 }],
+  lineItem: [{label: 'Item ID'}],
+  identification: [ { position: 320 } ],
+  selectionField: [ { position: 320 } ]
+  }
+  @EndUserText.label: 'Item ID'
+  ZItmID;
+  
+  @UI.hidden: true
+  ZAttuuid; 
+}
